@@ -1,0 +1,47 @@
+--- 
+apiVersion: v1
+kind: Service
+metadata: 
+  name: loandefault
+  namespace: anthos-aiml
+  labels:
+    app: loandefault
+spec: 
+  ports: 
+    - port: 5000
+      protocol: TCP
+      targetPort: http
+  selector: 
+    app: loandefault
+  type: LoadBalancer
+
+
+---
+
+
+apiVersion: apps/v1beta2
+kind: Deployment
+metadata:
+  name: loandefault
+  namespace: anthos-aiml
+  labels:
+    app: loandefault
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: loandefault
+  template:
+    metadata:
+      labels:
+        app: loandefault
+    spec:
+      containers:
+      - name: loandefault
+        image: us.gcr.io/anthos-setup-8be124/loandefault:1.0.0
+        imagePullPolicy: Always
+        ports:
+          - containerPort: 5000
+            name: http
+            protocol: TCP
+  

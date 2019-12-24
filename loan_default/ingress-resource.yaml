@@ -1,0 +1,18 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-aiml
+  annotations:
+    
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    kubernetes.io/ingress.global-static-ip-name: "web-static-ip"
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /loan
+        backend:
+          serviceName: loandefault
+          servicePort: 5000

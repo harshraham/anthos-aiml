@@ -1,0 +1,7 @@
+Flask>=1.1.1
+pandas>=0.25.2
+numpy>=1.15.1
+joblib>=0.12.5
+flask-cors
+flask_restplus
+scikit-learn>=0.21.3
